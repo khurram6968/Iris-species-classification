@@ -4,7 +4,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score,confusion_matrix
-
+from sklearn.neighbors import KNearestClassifier
 iris_data = pd.read_csv("C:\\Users\\MKhurram\\Desktop\\Data1\\Iris.csv")
 
 iris_data.columns
