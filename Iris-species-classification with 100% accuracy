@@ -1,0 +1,43 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,confusion_matrix
+
+iris_data = pd.read_csv("C:\\Users\\MKhurram\\Desktop\\Data1\\Iris.csv")
+
+iris_data.columns
+col = ['Id']
+iris = iris_data.drop(col,axis=1)
+np.unique(iris['Species'])
+
+pd.crosstab(iris['Species'],columns='count',normalize=True)
+sns.boxplot(x=iris['Species'],y=iris['SepalWidthCm'])
+
+iris['Species']=iris['Species'].astype('category')
+iris['Species']=iris['Species'].cat.codes
+iris = iris.sample(n=150)
+col_list = list(iris.columns)
+features = list(set(col_list)-set(['Species']))
+
+x = iris[features].values
+x
+
+y = iris['Species'].values
+train_x, test_x, train_y, test_y = train_test_split(x,y, test_size=0.3,random_state=0)
+
+lg = LogisticRegression()
+
+lg.fit(train_x, train_y)
+
+predic = lg.predict(test_x)
+predic
+
+cm = confusion_matrix(test_y, predic)
+cm
+
+accuracy_score = accuracy_score(test_y,predic)
+accuracy_score
+
+print("Misclassified value: %d"%(test_y!=predic).sum())
