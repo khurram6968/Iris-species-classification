@@ -44,7 +44,7 @@ print("Misclassified value: %d"%(test_y!=predic).sum())
 
 #############################################################################
 #Here i take randomly n_neighbors = 5:
-KNN Algorthim:
+#KNN Algorthim:
 KNN_classifier = KNeighborsClassifier(n_neighbors=5)
 KNN_classifier.fit(train_x,train_y)
 pred = KNN_classifier.predict(test_x)
